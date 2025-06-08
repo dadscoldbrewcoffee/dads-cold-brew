@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dad's Cold Brew Coffee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfaf6;
+      margin: 0;
+      padding: 20px;
+      color: #4a4a4a;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #5d4037;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background: #5d4037;
+      color: white;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #a1887f;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Dad’s Cold Brew Order</h1>
+
+  <form id="brewForm">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label>Flavor Quantities</label>
+    <input type="number" name="caramel" placeholder="Caramel" min="0">
+    <input type="number" name="brulee" placeholder="Crème Brûlée" min="0">
+    <input type="number" name="sweet" placeholder="Sweet Cream" min="0">
+    <input type="number" name="cinnamon" placeholder="Cinnamon Hazelnut" min="0">
+
+    <label for="service">Delivery or Pickup</label>
+    <select id="service" name="service">
+      <option value="Delivery">Delivery</option>
+      <option value="Pickup">Pickup</option>
+    </select>
+
+    <label for="address">Delivery Address (if applicable)</label>
+    <input type="text" id="address" name="address">
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <div class="footer">
+    <p>&copy; 2025 Dad's Cold Brew Coffee</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('brewForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    fetch('https://script.google.com/macros/s/AKfycbz0denBarXdSywttXlX_l2hrzyWh9M7k3AsQjtvvMYQAYAGhBEW5GsdRK3zGlTVyQTx/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    alert("Thank you! Your order has been received.");
+    e.target.reset();
+  });
+</script>
+
+</body>
+</html>
