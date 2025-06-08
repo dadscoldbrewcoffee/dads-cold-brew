@@ -1,3 +1,5 @@
+# Recreate the full HTML file with updated input styling for consistent quantity box alignment
+updated_html_content = '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,7 @@
       padding: 20px;
       color: #4a4a4a;
     }
+
     .container {
       max-width: 600px;
       margin: auto;
@@ -20,30 +23,100 @@
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 8px;
+    }
+
     h1 {
       text-align: center;
       color: #5d4037;
     }
+
     label {
       display: block;
       margin: 15px 0 5px;
       font-weight: bold;
     }
+
     input, select {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
-    input[type="number"] {
-      margin-bottom: 10px;
+
+    input.flavor-input {
+      width: 80px;
+      text-align: center;
+      margin: auto;
+      display: block;
     }
-    img {
-      width: 100%;
-      max-width: 150px;
-      margin-top: 8px;
+
+    .flavor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    .flavor-card {
+      background-color: #fbe9e7;
+      border: 2px solid #d7ccc8;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .flavor-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .flavor-title {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #5d4037;
+      margin-bottom: 8px;
+    }
+
+    .price-note {
+      font-size: 0.85em;
+      color: #795548;
+      margin-bottom: 8px;
+    }
+
+    .totals {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #e0f2f1;
+      color: #004d40;
       border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
     }
+
+    .cashapp {
+      margin-top: 25px;
+      padding: 15px;
+      background: #fff8e1;
+      border: 1px solid #ffe0b2;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.95em;
+      color: #5d4037;
+    }
+
     button {
       margin-top: 20px;
       padding: 12px;
@@ -54,11 +127,13 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     .footer {
       text-align: center;
       margin-top: 30px;
       color: #a1887f;
     }
+
     #confirmationMessage {
       display: none;
       margin-top: 20px;
@@ -74,9 +149,11 @@
       .container {
         padding: 20px;
       }
+
       h1 {
         font-size: 1.8em;
       }
+
       input, select, button {
         font-size: 1em;
       }
@@ -86,6 +163,10 @@
 <body>
 
 <div class="container">
+  <div class="logo">
+    <img src="https://dadscoldbrewcoffee.github.io/dads-cold-brew/IMG_7601.PNG" alt="Dad's Cold Brew Logo">
+  </div>
+
   <h1>Dad’s Cold Brew Order</h1>
 
   <form id="brewForm">
@@ -99,18 +180,30 @@
     <input type="tel" id="phone" name="phone" required>
 
     <label>Flavor Quantities</label>
-   <input type="number" name="caramel" placeholder="☕ Caramel" min="0">
-<img src="https://images.unsplash.com/photo-1607532941433-03839d09f31d" alt="Caramel" style="width:100%; max-width:150px; margin-top:8px; border-radius:8px;">
+    <div class="flavor-grid">
+      <div class="flavor-card">
+        <div class="flavor-title">☕ Caramel</div>
+        <div class="price-note">$6 per bottle</div>
+        <input type="number" name="caramel" min="0" placeholder="Qty" class="flavor-input">
+      </div>
+      <div class="flavor-card">
+        <div class="flavor-title">🍮 Crème Brûlée</div>
+        <div class="price-note">$6 per bottle</div>
+        <input type="number" name="brulee" min="0" placeholder="Qty" class="flavor-input">
+      </div>
+      <div class="flavor-card">
+        <div class="flavor-title">🍦 Sweet Cream</div>
+        <div class="price-note">$6 per bottle</div>
+        <input type="number" name="sweet" min="0" placeholder="Qty" class="flavor-input">
+      </div>
+      <div class="flavor-card">
+        <div class="flavor-title">🌰 Cinnamon Hazelnut</div>
+        <div class="price-note">$6 per bottle</div>
+        <input type="number" name="cinnamon" min="0" placeholder="Qty" class="flavor-input">
+      </div>
+    </div>
 
-<input type="number" name="brulee" placeholder="🍮 Crème Brûlée" min="0">
-<img src="https://images.unsplash.com/photo-1603297622939-89c962e2432f" alt="Crème Brûlée" style="width:100%; max-width:150px; margin-top:8px; border-radius:8px;">
-
-<input type="number" name="sweet" placeholder="🍦 Sweet Cream" min="0">
-<img src="https://images.unsplash.com/photo-1505253210343-d4fd6f07aa4c" alt="Sweet Cream" style="width:100%; max-width:150px; margin-top:8px; border-radius:8px;">
-
-<input type="number" name="cinnamon" placeholder="🌰 Cinnamon Hazelnut" min="0">
-<img src="https://images.unsplash.com/photo-1612198737112-79f20feee6a9" alt="Cinnamon Hazelnut" style="width:100%; max-width:150px; margin-top:8px; border-radius:8px;">
-
+    <div class="totals" id="totalsDisplay">Total: 0 bottles — $0</div>
 
     <label for="service">Delivery or Pickup</label>
     <select id="service" name="service">
@@ -120,6 +213,12 @@
 
     <label for="address">Delivery Address (if applicable)</label>
     <input type="text" id="address" name="address">
+
+    <div class="cashapp">
+      💵 We accept payments via <strong>CashApp</strong>: <br>
+      <a href="https://cash.app/$DadsColdBrewCoffee" target="_blank">$DadsColdBrewCoffee</a><br>
+      Please include your <strong>name</strong> in the payment note.
+    </div>
 
     <button type="submit">Place Order</button>
   </form>
@@ -134,9 +233,25 @@
 </div>
 
 <script>
+  const pricePerBottle = 6;
+
+  function updateTotals() {
+    const inputs = document.querySelectorAll('.flavor-input');
+    let totalQty = 0;
+    inputs.forEach(input => {
+      const val = parseInt(input.value);
+      if (!isNaN(val)) totalQty += val;
+    });
+    const amountDue = totalQty * pricePerBottle;
+    document.getElementById('totalsDisplay').innerText = `Total: ${totalQty} bottle${totalQty !== 1 ? 's' : ''} — $${amountDue}`;
+  }
+
+  document.querySelectorAll('.flavor-input').forEach(input => {
+    input.addEventListener('input', updateTotals);
+  });
+
   document.getElementById('brewForm').addEventListener('submit', function(e) {
     e.preventDefault();
-
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
@@ -147,8 +262,8 @@
       body: JSON.stringify(data)
     });
 
-    // Hide form and show confirmation message
     e.target.reset();
+    updateTotals();
     document.getElementById('brewForm').style.display = 'none';
     document.getElementById('confirmationMessage').style.display = 'block';
   });
@@ -156,3 +271,11 @@
 
 </body>
 </html>
+'''
+
+# Save the updated HTML to a file
+file_path_updated = "/mnt/data/dads-cold-brew-fixed-inputs.html"
+with open(file_path_updated, "w") as f:
+    f.write(updated_html_content)
+
+file_path_updated
