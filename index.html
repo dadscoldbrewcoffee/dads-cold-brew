@@ -35,6 +35,15 @@
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+    input[type="number"] {
+      margin-bottom: 10px;
+    }
+    img {
+      width: 100%;
+      max-width: 150px;
+      margin-top: 8px;
+      border-radius: 8px;
+    }
     button {
       margin-top: 20px;
       padding: 12px;
@@ -49,6 +58,28 @@
       text-align: center;
       margin-top: 30px;
       color: #a1887f;
+    }
+    #confirmationMessage {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #dcedc8;
+      color: #33691e;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      input, select, button {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
@@ -68,10 +99,17 @@
     <input type="tel" id="phone" name="phone" required>
 
     <label>Flavor Quantities</label>
-    <input type="number" name="caramel" placeholder="Caramel" min="0">
-    <input type="number" name="brulee" placeholder="Crème Brûlée" min="0">
-    <input type="number" name="sweet" placeholder="Sweet Cream" min="0">
-    <input type="number" name="cinnamon" placeholder="Cinnamon Hazelnut" min="0">
+    <input type="number" name="caramel" placeholder="☕ Caramel" min="0">
+    <img src="https://i.imgur.com/1dqHkhB.jpg" alt="Caramel">
+
+    <input type="number" name="brulee" placeholder="🍮 Crème Brûlée" min="0">
+    <img src="https://i.imgur.com/EY7hAQV.jpg" alt="Crème Brûlée">
+
+    <input type="number" name="sweet" placeholder="🍦 Sweet Cream" min="0">
+    <img src="https://i.imgur.com/NUQUyL4.jpg" alt="Sweet Cream">
+
+    <input type="number" name="cinnamon" placeholder="🌰 Cinnamon Hazelnut" min="0">
+    <img src="https://i.imgur.com/lDQBBdt.jpg" alt="Cinnamon Hazelnut">
 
     <label for="service">Delivery or Pickup</label>
     <select id="service" name="service">
@@ -85,6 +123,10 @@
     <button type="submit">Place Order</button>
   </form>
 
+  <div id="confirmationMessage">
+    ✅ Thank you! Your order has been received. We’ll be in touch soon.
+  </div>
+
   <div class="footer">
     <p>&copy; 2025 Dad's Cold Brew Coffee</p>
   </div>
@@ -93,7 +135,7 @@
 <script>
   document.getElementById('brewForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
@@ -104,8 +146,10 @@
       body: JSON.stringify(data)
     });
 
-    alert("Thank you! Your order has been received.");
+    // Hide form and show confirmation message
     e.target.reset();
+    document.getElementById('brewForm').style.display = 'none';
+    document.getElementById('confirmationMessage').style.display = 'block';
   });
 </script>
 
