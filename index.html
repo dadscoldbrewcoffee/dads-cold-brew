@@ -62,14 +62,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       margin-top: 10px;
-    }
-
-    .flavor-single {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
     }
 
     .flavor-card {
@@ -207,14 +201,6 @@
       </div>
     </div>
 
-    <div class="flavor-single">
-      <div class="flavor-card">
-        <div class="flavor-title">🥥 Coconut Caramel</div>
-        <div class="price-note">$6 per bottle</div>
-        <input type="number" name="coconut" min="0" placeholder="Qty" class="flavor-input">
-      </div>
-    </div>
-
     <div class="totals" id="totalsDisplay">Total: 0 bottles — $0</div>
 
     <label for="service">Delivery or Pickup</label>
@@ -255,7 +241,7 @@
       if (!isNaN(val)) totalQty += val;
     });
     const amountDue = totalQty * pricePerBottle;
-    document.getElementById('totalsDisplay').innerText = `Total: ${totalQty} bottle${totalQty !== 1 ? 's' : ''} — $${amountDue}`;
+    document.getElementById('totalsDisplay').innerText = Total: ${totalQty} bottle${totalQty !== 1 ? 's' : ''} — $${amountDue};
   }
 
   document.querySelectorAll('.flavor-input').forEach(input => {
