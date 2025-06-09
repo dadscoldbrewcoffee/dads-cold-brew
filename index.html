@@ -1,271 +1,156 @@
+html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dad's Cold Brew Coffee</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dad's Cold Brew Coffee - Order Online</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: #fdfaf6;
-      margin: 0;
-      padding: 20px;
       color: #4a4a4a;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      line-height: 1.6;
     }
-
     .container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .logo img {
+      max-width: 800px;
       width: 100%;
-      max-width: 200px;
-      border-radius: 8px;
+      margin: 30px 15px;
+      padding: 20px;
+      box-sizing: border-box;
     }
-
-    h1 {
+    .header {
       text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-size: 3em;
       color: #5d4037;
+      font-weight: 700;
+      margin: 0;
     }
-
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      font-weight: bold;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    input.flavor-input {
-      width: 80px;
-      text-align: center;
-      margin: auto;
-      display: block;
-    }
-
-    .flavor-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-bottom: 20px;
-      margin-top: 10px;
-    }
-
-    .flavor-card {
-      background-color: #fbe9e7;
-      border: 2px solid #d7ccc8;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .flavor-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .flavor-title {
-      font-size: 1.1em;
-      font-weight: 600;
-      color: #5d4037;
-      margin-bottom: 8px;
-    }
-
-    .price-note {
-      font-size: 0.85em;
+    .header p {
+      font-size: 1.2em;
       color: #795548;
-      margin-bottom: 8px;
     }
-
-    .totals {
-      margin-top: 10px;
+    form {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+    }
+    input, select, button {
+      width: 100%;
       padding: 10px;
-      background-color: #e0f2f1;
-      color: #004d40;
-      border-radius: 8px;
-      font-weight: bold;
-      text-align: center;
+      margin: 10px 0;
+      box-sizing: border-box;
     }
-
-    .cashapp {
-      margin-top: 25px;
-      padding: 15px;
-      background: #fff8e1;
-      border: 1px solid #ffe0b2;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 0.95em;
-      color: #5d4037;
-    }
-
     button {
-      margin-top: 20px;
-      padding: 12px;
-      background: #5d4037;
+      background-color: #5d4037;
       color: white;
-      font-size: 1em;
       border: none;
       border-radius: 6px;
-      cursor: pointer;
+      font-size: 1em;
     }
-
-    .footer {
+    .confirmation {
       text-align: center;
-      margin-top: 30px;
-      color: #a1887f;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
     }
-
-    #confirmationMessage {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      background: #dcedc8;
-      color: #33691e;
-      border-radius: 8px;
+    .cashapp-link {
+      background-color: #2e8b57;
+      color: white;
+      padding: 10px 20px;
       font-weight: bold;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 1.8em;
-      }
-
-      input, select, button {
-        font-size: 1em;
-      }
+      text-decoration: none;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <header class="header">
+      <h1>Dad's Cold Brew Coffee</h1>
+      <p>Handcrafted, small-batch cold brew, made with love.</p>
+    </header>
 
-<div class="container">
-  <div class="logo">
-    <img src="https://dadscoldbrewcoffee.github.io/dads-cold-brew/IMG_7601.PNG" alt="Dad's Cold Brew Logo">
+    <form id="order-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="tel" name="phone" placeholder="Your Phone Number" required />
+      <input type="text" name="address" placeholder="Delivery Address" />
+
+      <label>Caramel Quantity</label>
+      <input type="number" name="caramel" min="0" value="0" />
+      <label>Crème Brûlée Quantity</label>
+      <input type="number" name="brulee" min="0" value="0" />
+      <label>Sweet Cream Quantity</label>
+      <input type="number" name="sweet" min="0" value="0" />
+      <label>Cinnamon Hazelnut Quantity</label>
+      <input type="number" name="cinnamon" min="0" value="0" />
+
+      <button type="submit">Submit Order</button>
+    </form>
   </div>
 
-  <h1>Dad’s Cold Brew Order</h1>
+  <script>
+    document.getElementById("order-form").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-  <form id="brewForm">
-    <label for="name">Full Name</label>
-    <input type="text" id="name" name="name" required>
+      const formData = new FormData(this);
+      const payload = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        address: formData.get("address"),
+        caramel: formData.get("caramel"),
+        brulee: formData.get("brulee"),
+        sweet: formData.get("sweet"),
+        cinnamon: formData.get("cinnamon")
+      };
 
-    <label for="email">Email Address</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" name="phone" required>
-
-    <label>Flavor Quantities</label>
-    <div class="flavor-grid">
-      <div class="flavor-card">
-        <div class="flavor-title">☕ Caramel</div>
-        <div class="price-note">$6 per bottle</div>
-        <input type="number" name="caramel" min="0" placeholder="Qty" class="flavor-input">
-      </div>
-      <div class="flavor-card">
-        <div class="flavor-title">🍮 Crème Brûlée</div>
-        <div class="price-note">$6 per bottle</div>
-        <input type="number" name="brulee" min="0" placeholder="Qty" class="flavor-input">
-      </div>
-      <div class="flavor-card">
-        <div class="flavor-title">🍦 Sweet Cream</div>
-        <div class="price-note">$6 per bottle</div>
-        <input type="number" name="sweet" min="0" placeholder="Qty" class="flavor-input">
-      </div>
-      <div class="flavor-card">
-        <div class="flavor-title">🌰 Cinnamon Hazelnut</div>
-        <div class="price-note">$6 per bottle</div>
-        <input type="number" name="cinnamon" min="0" placeholder="Qty" class="flavor-input">
-      </div>
-    </div>
-
-    <div class="totals" id="totalsDisplay">Total: 0 bottles — $0</div>
-
-    <label for="service">Delivery or Pickup</label>
-    <select id="service" name="service">
-      <option value="Delivery">Delivery</option>
-      <option value="Pickup">Pickup</option>
-    </select>
-
-    <label for="address">Delivery Address (if applicable)</label>
-    <input type="text" id="address" name="address">
-
-    <div class="cashapp">
-      💵 We accept payments via <strong>CashApp</strong>: <br>
-      <a href="https://cash.app/$DadsColdBrewCoffee" target="_blank">$DadsColdBrewCoffee</a><br>
-      Please include your <strong>name</strong> in the payment note.
-    </div>
-
-    <button type="submit">Place Order</button>
-  </form>
-
-  <div id="confirmationMessage">
-    ✅ Thank you! Your order has been received. We’ll be in touch soon.
-  </div>
-
-  <div class="footer">
-    <p>&copy; 2025 Dad's Cold Brew Coffee</p>
-  </div>
-</div>
-
-<script>
-  const pricePerBottle = 6;
-
-  function updateTotals() {
-    const inputs = document.querySelectorAll('.flavor-input');
-    let totalQty = 0;
-    inputs.forEach(input => {
-      const val = parseInt(input.value);
-      if (!isNaN(val)) totalQty += val;
+      fetch("https://script.google.com/macros/s/AKfycbz0denBarXdSywttXlX_l2hrzyWh9M7k3AsQjtvvMYQAYAGhBEW5GsdRK3zGlTVyQTx/exec", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          document.getElementById("order-form").style.display = "none";
+          const confirmation = document.createElement("div");
+          confirmation.className = "confirmation";
+          confirmation.innerHTML = `
+            <h2 style="color: #2e8b57;">✅ Order Submitted!</h2>
+            <p>Thank you for supporting Dad’s Cold Brew!</p>
+            <p style="font-weight: bold;">You’ll receive a confirmation email shortly.</p>
+            <hr style="margin: 20px 0;">
+            <h3>💲 How to Pay</h3>
+            <p>Use <strong>CashApp</strong> to complete your payment:</p>
+            <a href="https://cash.app/$DadsColdBrewCoffee" target="_blank" class="cashapp-link">
+              Pay with CashApp
+            </a>
+            <p style="margin-top: 10px;">Or pay cash at pickup/delivery. 💛</p>
+          `;
+          document.querySelector(".container").appendChild(confirmation);
+        }
+      });
     });
-    const amountDue = totalQty * pricePerBottle;
-    document.getElementById('totalsDisplay').innerText = `Total: ${totalQty} bottle${totalQty !== 1 ? 's' : ''} — $${amountDue}`;
-  }
-
-  document.querySelectorAll('.flavor-input').forEach(input => {
-    input.addEventListener('input', updateTotals);
-  });
-
-  document.getElementById('brewForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-
-    fetch('https://script.google.com/macros/s/AKfycbz0denBarXdSywttXlX_l2hrzyWh9M7k3AsQjtvvMYQAYAGhBEW5GsdRK3zGlTVyQTx/exec', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    e.target.reset();
-    updateTotals();
-    document.getElementById('brewForm').style.display = 'none';
-    document.getElementById('confirmationMessage').style.display = 'block';
-  });
-</script>
-
+  </script>
 </body>
 </html>
+"""
+
+with open("/mnt/data/dads-cold-brew-updated.html", "w") as f:
+    f.write(html_code)
+
+"/mnt/data/dads-cold-brew-updated.html"
