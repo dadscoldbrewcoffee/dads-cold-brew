@@ -1,4 +1,8 @@
-html_code = """
+# Rewriting the HTML file with updated content based on user's latest request:
+# 1. Remove CashApp mention from the order page
+# 2. Show CashApp info only on the confirmation page
+
+html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,145 +16,165 @@ html_code = """
       color: #4a4a4a;
       margin: 0;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
       line-height: 1.6;
     }
     .container {
-      max-width: 800px;
+      max-width: 600px;
       width: 100%;
-      margin: 30px 15px;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .header h1 {
-      font-size: 3em;
-      color: #5d4037;
-      font-weight: 700;
-      margin: 0;
-    }
-    .header p {
-      font-size: 1.2em;
-      color: #795548;
-    }
-    form {
-      background-color: #ffffff;
+      background: #ffffff;
+      padding: 25px;
       border-radius: 12px;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      padding: 20px;
     }
-    input, select, button {
+    h1 {
+      text-align: center;
+      color: #5d4037;
+      margin-bottom: 10px;
+    }
+    p.intro {
+      text-align: center;
+      color: #795548;
+      margin-bottom: 30px;
+    }
+    form label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    input, select {
       width: 100%;
       padding: 10px;
-      margin: 10px 0;
-      box-sizing: border-box;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .flavor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .flavor-grid div {
+      background-color: #efebe9;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .flavor-grid input {
+      width: 50px;
+      margin-top: 8px;
     }
     button {
-      background-color: #5d4037;
-      color: white;
+      margin-top: 30px;
+      padding: 12px;
+      background-color: #6d4c41;
+      color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
+      width: 100%;
       font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5d4037;
     }
     .confirmation {
+      display: none;
       text-align: center;
-      font-family: Arial, sans-serif;
-      padding: 2rem;
+      margin-top: 30px;
     }
-    .cashapp-link {
-      background-color: #2e8b57;
-      color: white;
-      padding: 10px 20px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 10px;
+    .confirmation.show {
+      display: block;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <header class="header">
-      <h1>Dad's Cold Brew Coffee</h1>
-      <p>Handcrafted, small-batch cold brew, made with love.</p>
-    </header>
+    <h1>Dad's Cold Brew Coffee</h1>
+    <p class="intro">Handcrafted, small-batch cold brew, made with love.</p>
+    <form id="orderForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
 
-    <form id="order-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <input type="tel" name="phone" placeholder="Your Phone Number" required />
-      <input type="text" name="address" placeholder="Delivery Address" />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
 
-      <label>Caramel Quantity</label>
-      <input type="number" name="caramel" min="0" value="0" />
-      <label>Crème Brûlée Quantity</label>
-      <input type="number" name="brulee" min="0" value="0" />
-      <label>Sweet Cream Quantity</label>
-      <input type="number" name="sweet" min="0" value="0" />
-      <label>Cinnamon Hazelnut Quantity</label>
-      <input type="number" name="cinnamon" min="0" value="0" />
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
 
-      <button type="submit">Submit Order</button>
+      <label for="service">Service Type</label>
+      <select id="service" name="service" required>
+        <option value="">Choose an option</option>
+        <option value="Pickup">Pickup</option>
+        <option value="Delivery">Delivery</option>
+      </select>
+
+      <label for="address">Delivery Address (if applicable)</label>
+      <input type="text" id="address" name="address" />
+
+      <label>Choose Your Flavors</label>
+      <div class="flavor-grid">
+        <div>
+          <strong>Caramel</strong><br/>
+          <input type="number" name="caramel" min="0" value="0"/>
+        </div>
+        <div>
+          <strong>Crème Brûlée</strong><br/>
+          <input type="number" name="brulee" min="0" value="0"/>
+        </div>
+        <div>
+          <strong>Sweet Cream</strong><br/>
+          <input type="number" name="sweet" min="0" value="0"/>
+        </div>
+        <div>
+          <strong>Cinnamon Hazelnut</strong><br/>
+          <input type="number" name="cinnamon" min="0" value="0"/>
+        </div>
+      </div>
+
+      <button type="submit">Place Order</button>
     </form>
+
+    <div class="confirmation" id="confirmationMessage">
+      <h2>Thank you for your order!</h2>
+      <p>We’ve received your request and will reach out shortly.</p>
+      <p><strong>Payment options:</strong><br/>
+        💵 Cash or <a href="https://cash.app/$DadsColdBrewCoffee" target="_blank">$DadsColdBrewCoffee on CashApp</a></p>
+      <p>Please include your <strong>name</strong> in the CashApp note!</p>
+    </div>
   </div>
 
   <script>
-    document.getElementById("order-form").addEventListener("submit", function(e) {
+    const form = document.getElementById('orderForm');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
 
-      const formData = new FormData(this);
-      const payload = {
-        name: formData.get("name"),
-        email: formData.get("email"),
-        phone: formData.get("phone"),
-        address: formData.get("address"),
-        caramel: formData.get("caramel"),
-        brulee: formData.get("brulee"),
-        sweet: formData.get("sweet"),
-        cinnamon: formData.get("cinnamon")
-      };
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbz0denBarXdSywttXlX_l2hrzyWh9M7k3AsQjtvvMYQAYAGhBEW5GsdRK3zGlTVyQTx/exec', {
+          method: 'POST',
+          body: formData
+        });
 
-      fetch("https://script.google.com/macros/s/AKfycbz0denBarXdSywttXlX_l2hrzyWh9M7k3AsQjtvvMYQAYAGhBEW5GsdRK3zGlTVyQTx/exec", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          document.getElementById("order-form").style.display = "none";
-          const confirmation = document.createElement("div");
-          confirmation.className = "confirmation";
-          confirmation.innerHTML = `
-            <h2 style="color: #2e8b57;">✅ Order Submitted!</h2>
-            <p>Thank you for supporting Dad’s Cold Brew!</p>
-            <p style="font-weight: bold;">You’ll receive a confirmation email shortly.</p>
-            <hr style="margin: 20px 0;">
-            <h3>💲 How to Pay</h3>
-            <p>Use <strong>CashApp</strong> to complete your payment:</p>
-            <a href="https://cash.app/$DadsColdBrewCoffee" target="_blank" class="cashapp-link">
-              Pay with CashApp
-            </a>
-            <p style="margin-top: 10px;">Or pay cash at pickup/delivery. 💛</p>
-          `;
-          document.querySelector(".container").appendChild(confirmation);
-        }
-      });
+        form.style.display = 'none';
+        confirmation.classList.add('show');
+      } catch (error) {
+        alert('There was an error submitting your order. Please try again.');
+      }
     });
   </script>
 </body>
 </html>
 """
 
-with open("/mnt/data/dads-cold-brew-updated.html", "w") as f:
-    f.write(html_code)
+with open("/mnt/data/dads-cold-brew-updated-v2.html", "w") as f:
+    f.write(html_content)
 
-"/mnt/data/dads-cold-brew-updated.html"
+"/mnt/data/dads-cold-brew-updated-v2.html"
